@@ -1,0 +1,32 @@
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: repeat(6, 60px);
+    gap: 10px;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.span-4 {
+     grid-column: span 4;
+}
+
+.output {
+    background-color: rgb(197, 197, 197);
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    padding: 10px;
+
+}
+
+.current-display {
+    font-size: 22px;
+}
+
+.previous-display {
+    color: gray;
+}

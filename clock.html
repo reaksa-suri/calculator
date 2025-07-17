@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1 id="clock"></h1>
+
+    <script>
+
+        function addZero(i) {
+            if (i < 10) {i ="0" + i}
+            return i;
+        }
+
+        function getClock(){
+            var clock = document.getElementById('clock');
+            var d = new Date();
+            var h = addZero(d.getHours());
+            let m = addZero(d.getMinutes());
+            let s = addZero(d.getSeconds());
+            let time = h + ":" + m + ":" +s;
+            clock.innerHTML = time;
+        }
+
+        getClock();
+
+        setInterval(getClock, 1000);
+
+    </script>
+</body>
+</html>

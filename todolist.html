@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(red, green, blue);
+        }
+         .btn_remove {
+                cursor: pointer;
+                position: absolute;
+                right: 8px;
+            }
+        ul{
+            margin:0;
+            padding:0;
+        }
+        ul li{
+            background-color: white;
+            position: relative;
+            width: 300px;
+            margin: 10px 0px;
+            padding: 10px 8px;
+            list-style: none;
+        }
+
+        ul Li.done{
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="taskInput">
+    <button onclick="addTask()"> + Add Task </button>
+
+    <ul id="taskList">
+    </ul>
+
+    <script>
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            function saveTasks(){
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+            }
+            function renderTask(){
+                const list = document.getElementById('taskList');
+                list.innerHTML = "";
+                tasks.forEach((task,index) => {
+                    const li = document.createElement("li");
+                    li.className = task.done? "done" : '';
+                   li.innerHTML = `
+                <span onclick="toggleDone(${index})">${task.text}</span>
+                <button class="btn_remove" onclick="deleteTask(${index})">❌</button>
+                `; 
+                list.appendChild(li);
+                    
+                });
+            }
+
+                function addTask(){
+                    const input = document.getElementById("taskInput");
+                    const text = input.value.trim();
+                    tasks.push({text:text,done:false});
+                    input.value = "";
+                    saveTasks();
+                    renderTask();
+
+               }
+               renderTask();
+
+               function deleteTask(index){
+                    tasks.splice(index,1);
+                    saveTasks();
+                    renderTask();
+
+               }
+
+               function toggleDone(index){
+                tasks[index].done = !tasks[index].done;
+                saveTasks();
+                renderTask();
+
+               }
+    </script>
+</body>
+</html>

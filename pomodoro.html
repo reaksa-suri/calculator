@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="pomo">02:00</h1>
+
+    <script>
+        var pomo = document.getElementById('pomo');
+
+        function addZero(i) {
+            if (i < 10) {i ="0" + i}
+            return i;
+        }
+
+            let m = 1;
+            let s = 5;
+            let timer;
+            var startPomo;
+
+        function start(){
+        
+            timer = addZero(m) + ":" + addZero(s);
+            s--;
+            if(s < 0){
+                m--;
+                s = 5;
+            }
+
+            pomo.innerHTML = timer;
+
+              if(m < 0){
+            clearInterval(startPomo);
+        }
+        }
+
+
+
+        startPomo = setInterval(start, 1000);
+
+      
+    </script>
+</body>
+</html>
